@@ -1,4 +1,4 @@
-package com.aldikitta.thingstodo
+package com.aldikitta.thingstodo.runtime
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -11,8 +11,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.aldikitta.thingstodo.ui.theme.ThingstodoTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    private lateinit var windowState: WindowS
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
