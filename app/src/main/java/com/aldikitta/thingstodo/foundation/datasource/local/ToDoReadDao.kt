@@ -4,6 +4,8 @@ import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Transaction
 import com.aldikitta.thingstodo.foundation.datasource.local.model.*
+import com.aldikitta.thingstodo.model.ToDoStatus
+import com.aldikitta.thingstodo.model.ToDoTaskOverallCount
 import kotlinx.coroutines.flow.Flow
 import java.time.LocalDateTime
 
@@ -65,4 +67,70 @@ interface ToDoReadDao {
         """
     )
     fun getTaskWithListOrderByDueDateToday(date: LocalDateTime): Flow<List<ToDoTaskWithList>>
+
+    @Transaction
+    @Query(
+        """
+            SELECT COUNT(*) AS allTaskCount,
+            (SELECT COUNT(task_dueDate) FROM ToDoTaskDb WHERE task_dueDate < :date AND task_status != "COMPLETE") AS scheduledTodayTaskCount, 
+            COUNT(task_dueDate) AS scheduledTaskCount FROM ToDoTaskDb WHERE task_status != "COMPLETE"
+        """
+    )
+    fun getTaskOverallCount(date: LocalDateTime): Flow<ToDoTaskOverallCount>
+
+    @Query("SELECT * FROM ToDoTaskDb WHERE task_dueDate IS NOT NULL AND task_status != :status")
+    fun getScheduledTasks(status: ToDoStatus = ToDoStatus.COMPLETE): Flow<List<ToDoTaskDb>>
+
+    @Query("SELECT * FROM ToDoStepDb")
+    fun getStep(): Flow<List<ToDoStepDb>>
+
+    @Query("SELECT * FROM ToDoStepDb WHERE step_taskId = :taskId")
+    fun getStep(taskId: String): Flow<List<ToDoStepDb>>
+
+    @Transaction
+    @Query("SELECT * FROM ToDoGroupDb")
+    fun getGroupWithList(): Flow<List<ToDoGroupWithList>>
+
+    @Transaction
+    @Query("SELECT * FROM ToDoListDb")
+    fun getListWithTasks(): Flow<List<ToDoListWithTasks>>
+
+    @Transaction
+    @Query(
+        """
+            SELECT *
+            FROM ToDoTaskDb 
+            LEFT JOIN ToDoListDb ON task_listId = ToDoListDb.list_id
+            JOIN ToDoTaskFtsDb ON ToDoTaskDb.task_name = ToDoTaskFtsDb.task_name
+            WHERE ToDoTaskFtsDb MATCH :query
+        """
+    )
+    fun searchTaskWithList(query: Query): Flow<List<ToDoTaskWithList>>
+
+    @Transaction
+    @Query("SELECT * FROM ToDoListDb WHERE list_groupId = :groupId")
+    fun getListWithTasks(groupId: String): Flow<List<ToDoListWithTasks>>
+
+    @Transaction
+    @Query("SELECT * FROM ToDoTaskDb")
+    fun getTaskWithSteps(): Flow<List<ToDoTaskWithSteps>>
+
+    @Transaction
+    @Query("SELECT * FROM ToDoTaskDb WHERE task_listId = :listId")
+    fun getTaskWithSteps(listId: String): Flow<List<ToDoTaskWithSteps>>
+
+    @Transaction
+    @Query("SELECT * FROM ToDoTaskDb WHERE task_id = :id")
+    fun getTaskWithStepsById(id: String): Flow<ToDoTaskWithSteps>
+
+    @Transaction
+    @Query(
+        """
+            SELECT *
+            FROM ToDoTaskDb 
+            LEFT JOIN ToDoListDb ON task_listId = ToDoListDb.list_id
+            WHERE ToDoTaskDb.task_id = :id
+        """
+    )
+    fun getTaskWithListById(id: String): Flow<ToDoTaskWithList>
 }
