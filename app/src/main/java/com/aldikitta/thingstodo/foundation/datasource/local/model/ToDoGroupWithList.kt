@@ -10,5 +10,5 @@ data class ToDoGroupWithList(
         parentColumn = "group_id",
         entityColumn = "list_groupId"
     )
-    val listWithTasks: List<ToDoGroupWithList>
+    val listWithTasks: List<ToDoListWithTasks>
 )
