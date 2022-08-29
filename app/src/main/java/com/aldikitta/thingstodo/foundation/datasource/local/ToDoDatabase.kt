@@ -18,10 +18,10 @@ import kotlinx.coroutines.launch
         ToDoTaskFtsDb::class,
         ToDoStepDb::class
     ],
-    version = 2,
-    autoMigrations = [
-        AutoMigration(from = 1, to = 2)
-    ],
+    version = 1,
+//    autoMigrations = [
+//        AutoMigration(from = 1, to = 2)
+//    ],
 )
 
 @TypeConverters(DateConverter::class)

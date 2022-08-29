@@ -8,6 +8,23 @@ plugins {
     id 'kotlin-kapt'
 }
 
+ext.codeCoverage = [
+        enabled      : true,
+        fileBlackList: [
+        ],
+        fileWhiteList: [
+                // UI
+                '**/ui/*ViewModel*',
+                '**/ui/*State*',
+                // Data
+                // '**/data/*Environment*',
+                '**/foundation/datasource/local/*Read*',
+                '**/foundation/datasource/local/*Write*',
+                // '**/foundation/datasource/preference/PreferenceManager*',
+                // Core
+                '**/foundation/extension/*',
+        ]
+]
 android {
     compileSdk 33
 
@@ -21,6 +38,12 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary true
+        }
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += ["room.schemaLocation": "$projectDir/room-schemas".toString()]
+            }
         }
     }
 
@@ -96,5 +119,5 @@ dependencies {
 
     //KEY-IN
     implementation 'androidx.datastore:datastore:1.0.0'
-    implementation 'com.google.protobuf:protobuf-java:4.0.0-rc-2'
+//    implementation 'com.google.protobuf:protobuf-java:4.0.0-rc-2'
 }
