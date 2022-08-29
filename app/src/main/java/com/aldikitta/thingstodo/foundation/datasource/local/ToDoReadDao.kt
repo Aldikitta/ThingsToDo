@@ -105,7 +105,7 @@ interface ToDoReadDao {
             WHERE ToDoTaskFtsDb MATCH :query
         """
     )
-    fun searchTaskWithList(query: Query): Flow<List<ToDoTaskWithList>>
+    fun searchTaskWithList(query: String): Flow<List<ToDoTaskWithList>>
 
     @Transaction
     @Query("SELECT * FROM ToDoListDb WHERE list_groupId = :groupId")
