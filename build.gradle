@@ -1,4 +1,8 @@
 buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
     dependencies {
         classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.1'
         classpath "com.google.firebase:perf-plugin:1.4.1"
@@ -14,6 +18,24 @@ plugins {
     id "com.github.ben-manes.versions" version "0.41.0"
     id "nl.littlerobots.version-catalog-update" version "0.6.0"
 }
+
+//allprojects {
+//    repositories {
+//        google()
+//        mavenCentral()
+//    }
+//
+//    project.ext {
+//        minSdkVersion = 28
+//        targetSdkVersion = 33
+//        compileSdkVersion = 33
+//        buildToolsVersion = "33.0.0"
+//        appId = project.properties["application_id"]
+//        versionCode = Integer.parseInt(project.properties["version_code"])
+//        versionName = project.properties["version_name"]
+//    }
+//
+//}
 
 task clean(type: Delete) {
     delete rootProject.buildDir
