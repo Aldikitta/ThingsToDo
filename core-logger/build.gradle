@@ -1,1 +1,4 @@
 apply from: "$rootDir/gradle/lib-android-module.gradle"
+android {
+    namespace 'com.aldikitta.core_logger'
+}

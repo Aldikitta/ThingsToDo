@@ -2,6 +2,9 @@ package com.aldikitta.thingstodo.foundation.di
 
 import android.content.Context
 import androidx.datastore.core.DataStore
+import androidx.datastore.dataStore
+import com.aldikitta.thingstodo.foundation.datasource.preferences.CredentialPreferenceSerializer
+import com.aldikitta.thingstodo.foundation.datasource.preferences.model.CredentialPreference
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,10 +18,10 @@ private const val USER_NAME = "user-preference.pb"
 private const val THEME_NAME = "theme-preference.pb"
 private const val LANGUAGE_NAME = "language-preference.pb"
 
-//private val Context.credentialDataStore: DataStore<CredentialPreference> by dataStore(
-//    fileName = CREDENTIAL_NAME,
-//    serializer = CredentialPreferenceSerializer
-//)
+private val Context.credentialDataStore: DataStore<CredentialPreference> by dataStore(
+    fileName = CREDENTIAL_NAME,
+    serializer = CredentialPreferenceSerializer
+)
 //private val Context.userDataStore: DataStore<UserPreference> by dataStore(
 //    fileName = USER_NAME,
 //    serializer = UserPreferenceSerializer
@@ -32,15 +35,15 @@ private const val LANGUAGE_NAME = "language-preference.pb"
 //    serializer = LanguagePreferenceSerializer
 //)
 //
-//@Module
-//@InstallIn(SingletonComponent::class)
-//object DataStoreModule {
-//
-//    @Singleton
-//    @Provides
-//    fun provideCredentialDataStore(@ApplicationContext context: Context): DataStore<CredentialPreference> {
-//        return context.credentialDataStore
-//    }
+@Module
+@InstallIn(SingletonComponent::class)
+object DataStoreModule {
+
+    @Singleton
+    @Provides
+    fun provideCredentialDataStore(@ApplicationContext context: Context): DataStore<CredentialPreference> {
+        return context.credentialDataStore
+    }
 //
 //    @Singleton
 //    @Provides
@@ -60,4 +63,4 @@ private const val LANGUAGE_NAME = "language-preference.pb"
 //        return context.languageDatastore
 //    }
 //
-//}
+}

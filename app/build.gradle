@@ -10,7 +10,9 @@ plugins {
 }
 
 wire {
-    kotlin {}
+    kotlin {
+        android = true
+    }
 }
 
 ext.codeCoverage = [
@@ -76,6 +78,7 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+    namespace 'com.aldikitta.thingstodo'
 }
 
 
@@ -125,7 +128,7 @@ dependencies {
     implementation project(":core-logger")
 
     //KEY-IN
-//    implementation 'androidx.datastore:datastore:1.0.0'
+    implementation 'androidx.datastore:datastore:1.0.0'
     implementation 'androidx.datastore:datastore-preferences-core:1.0.0'
 //    implementation 'com.google.protobuf:protobuf-java:4.0.0-rc-2'
 }
