@@ -19,10 +19,5 @@ fun HostScreen(content: @Composable () -> Unit) {
     val viewModel = hiltViewModel<HostViewModel>()
     val state by viewModel.state.collectAsStateWithLifecycle()
 
-//    ThingstodoTheme(theme = state.theme, content = content)
-    Surface() {
-        Box(modifier = Modifier.fillMaxSize()){
-            Text(text = "hello", textAlign = TextAlign.Center)
-        }
-    }
+    ThingstodoTheme(theme = state.theme, content = content)
 }
