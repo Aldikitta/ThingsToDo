@@ -3,12 +3,15 @@ package com.aldikitta.thingstodo.runtime
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
 import com.aldikitta.thingstodo.features.host.ui.HostScreen
@@ -26,8 +29,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             windowState = rememberWindowState()
             HostScreen {
-                Surface() {
-                    Text(text = "hello")
+                Surface {
+//                    MainNavHost(windowState)
                 }
             }
         }
