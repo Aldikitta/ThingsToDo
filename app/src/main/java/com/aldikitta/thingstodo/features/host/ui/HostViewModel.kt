@@ -25,5 +25,4 @@ class HostViewModel @Inject constructor(hostEnvironment: HostEnvironmentReposito
                 .collect { setState { copy(theme = it) } }
         }
     }
-
 }

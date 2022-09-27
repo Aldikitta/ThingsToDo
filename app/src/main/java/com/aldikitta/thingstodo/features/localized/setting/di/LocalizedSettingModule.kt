@@ -1,7 +1,6 @@
 package com.aldikitta.thingstodo.features.localized.setting.di
 
-import com.aldikitta.thingstodo.features.localized.setting.data.ILocalizedSettingEnvironment
-import com.aldikitta.thingstodo.features.localized.setting.data.LocalizedSettingEnvironment
+import com.aldikitta.thingstodo.features.localized.setting.data.LocalizedSettingEnvironmentRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -12,6 +11,6 @@ import dagger.hilt.android.components.ViewModelComponent
 abstract class LocalizedSettingModule {
     @Binds
     abstract fun provideEnvironment(
-        environment: LocalizedSettingEnvironment
-    ): ILocalizedSettingEnvironment
+        environment: LocalizedSettingEnvironmentRepository
+    ): LocalizedSettingEnvironmentRepository
 }

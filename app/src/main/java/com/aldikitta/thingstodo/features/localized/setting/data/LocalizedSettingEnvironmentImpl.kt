@@ -5,9 +5,9 @@ import com.aldikitta.thingstodo.model.Language
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class LocalizedSettingEnvironment @Inject constructor(
+class LocalizedSettingEnvironmentRepositoryImpl @Inject constructor(
     private val preferenceManager: PreferenceManager
-) :ILocalizedSettingEnvironment {
+) :LocalizedSettingEnvironmentRepository {
     override fun getLanguage(): Flow<Language> {
         TODO("Not yet implemented")
     }

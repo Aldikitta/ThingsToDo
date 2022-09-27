@@ -1,16 +1,5 @@
 package com.aldikitta.thingstodo.features.localized.setting.ui
 
-import androidx.lifecycle.viewModelScope
-import com.aldikitta.thingstodo.R
-import com.aldikitta.thingstodo.features.localized.setting.data.ILocalizedSettingEnvironment
-import com.aldikitta.thingstodo.foundation.extension.select
-import com.aldikitta.thingstodo.foundation.viewmodel.StatefulViewModel
-import com.aldikitta.thingstodo.model.Language
-import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import javax.inject.Inject
-
 //@HiltViewModel
 //class LocalizedSettingViewModel @Inject constructor(localizedSettingEnvironment: ILocalizedSettingEnvironment) :
 //    StatefulViewModel<LocalizedSettingState, LocalizedEffect, LocalizedSettingAction, ILocalizedSettingEnvironment>(
