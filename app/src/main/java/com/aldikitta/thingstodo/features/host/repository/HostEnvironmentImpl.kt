@@ -1,14 +1,14 @@
-package com.aldikitta.thingstodo.features.host.data
+package com.aldikitta.thingstodo.features.host.repository
 
 import com.aldikitta.thingstodo.foundation.datasource.preferences.PreferenceManager
 import com.aldikitta.thingstodo.model.Theme
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class HostEnvironment @Inject constructor(
+class HostEnvironmentImpl @Inject constructor(
     private val preferenceManager: PreferenceManager
-) : IHostEnvironment {
+) : HostEnvironmentRepository {
     override fun getTheme(): Flow<Theme> {
-        TODO("Not yet implemented")
+        return preferenceManager.getTheme()
     }
 }
