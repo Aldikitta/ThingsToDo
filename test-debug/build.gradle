@@ -1,0 +1,11 @@
+apply from: "$rootDir/gradle/lib-android-module.gradle"
+
+android {
+    namespace 'com.aldikitta.test_debug'
+}
+
+dependencies {
+    implementation project(":core-logger")
+    implementation "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.9"
+    debugImplementation "com.github.chuckerteam.chucker:library:3.5.2"
+}

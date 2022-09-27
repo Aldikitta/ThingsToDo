@@ -12,6 +12,8 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/core-logger" />
+            <option value="$PROJECT_DIR$/test-debug" />
+            <option value="$PROJECT_DIR$/test-debug/no-op" />
           </set>
         </option>
       </GradleProjectSettings>

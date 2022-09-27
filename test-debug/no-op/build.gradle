@@ -1,0 +1,9 @@
+apply from: "$rootDir/gradle/lib-android-module.gradle"
+android {
+    namespace 'com.aldikitta.no_op'
+}
+
+dependencies {
+    implementation project(":core-logger")
+    implementation "com.squareup.okhttp3:okhttp:4.10.0"
+}

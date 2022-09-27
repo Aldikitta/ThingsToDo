@@ -15,5 +15,9 @@ dependencyResolutionManagement {
 rootProject.name = "Thingstodo"
 include ':app'
 include ':core-logger'
+include ':test-debug'
+include ':test-debug:no-op'
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+//include ':test-debug'
+//include ':test-debug:no-op'
