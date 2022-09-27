@@ -19,13 +19,55 @@
             android:name=".runtime.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
+            android:windowSoftInputMode="adjustResize"
             android:theme="@style/Theme.Thingstodo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="com.aldikitta.thingstodo"
+                    android:scheme="thingstodo" />
+            </intent-filter>
         </activity>
+<!--        <receiver-->
+<!--            android:name=".features.todo.taskreminder.ui.TaskBroadcastReceiver"-->
+<!--            android:exported="false">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.BOOT_COMPLETED" />-->
+
+<!--            </intent-filter>-->
+<!--        </receiver>-->
+
+        <service
+            android:name="androidx.appcompat.app.AppLocalesMetadataHolderService"
+            android:enabled="false"
+            android:exported="false">
+            <meta-data
+                android:name="autoStoreLocales"
+                android:value="true" />
+        </service>
+
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            android:exported="false"
+            tools:node="merge">
+            <meta-data
+                android:name="com.aldikitta.thingstodo.runtime.initializer.DebugToolsInitializer"
+                android:value="androidx.startup" />
+
+            <meta-data
+                android:name="com.aldikitta.thingstodo.runtime.initializer.ActivityLifecycleLoggrInitializer"
+                android:value="androidx.startup" />
+        </provider>
     </application>
 
 </manifest>
