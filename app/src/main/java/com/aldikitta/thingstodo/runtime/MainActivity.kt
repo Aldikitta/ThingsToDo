@@ -20,6 +20,7 @@ import com.aldikitta.thingstodo.R
 import com.aldikitta.thingstodo.features.host.ui.HostScreen
 import com.aldikitta.thingstodo.foundation.window.WindowState
 import com.aldikitta.thingstodo.foundation.window.rememberWindowState
+import com.aldikitta.thingstodo.runtime.navigation.MainNavHost
 import com.aldikitta.thingstodo.ui.theme.ThingstodoTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -33,8 +34,8 @@ class MainActivity : ComponentActivity() {
             windowState = rememberWindowState()
             HostScreen {
                 Surface {
-                    Box(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background))
-//                    MainNavHost(windowState)
+//                    Box(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background))
+                    MainNavHost(windowState)
                 }
             }
         }
