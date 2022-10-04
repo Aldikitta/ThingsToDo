@@ -4,9 +4,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.ModalBottomSheetDefaults
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Close
+import androidx.compose.material.icons.rounded.ChevronLeft
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -52,7 +53,7 @@ fun MainNavHost(windowState: WindowState) {
         if (isLargeScreen) {
             LargeScreenNavHost(bottomSheetNavigator, windowState, bottomSheetConfig)
         } else {
-
+            SmallScreenNavHost(bottomSheetNavigator, bottomSheetConfig)
         }
     }
 }
@@ -62,7 +63,7 @@ fun MainNavHost(windowState: WindowState) {
 private fun LargeScreenNavHost(
     bottomSheetNavigator: BottomSheetNavigator,
     windowState: WindowState,
-    bottomSheetConfig: MainBottomSheetConfig
+    bottomSheetConfig: MutableState<MainBottomSheetConfig>
 ) {
     val navController = rememberNavController(bottomSheetNavigator)
 
@@ -77,12 +78,46 @@ private fun LargeScreenNavHost(
 
         composable(HomeFLow.Root.route) {
             if (windowState.isDualPortrait()) {
-
+                HomeTableNavHost(navController, 1f, 1f)
+            }else{
+                HomeTableNavHost(navController, 0.333f, 0.666f)
             }
         }
     }
 }
+@OptIn(ExperimentalMaterialNavigationApi::class)
+@Composable
+private fun SmallScreenNavHost(
+    bottomSheetNavigator: BottomSheetNavigator,
+    bottomSheetConfig: MutableState<MainBottomSheetConfig>
+){
+    val navController = rememberNavController(bottomSheetNavigator)
+    NavHost(
+        navController = navController,
+        startDestination = MainFlow.Root.route
+    ) {
+        composable(route = MainFlow.Root.route) {
+            val viewModel = hiltViewModel<SplashViewModel>()
+            SplashScreen(navController = navController, viewModel = viewModel)
+        }
 
+//        AuthNavHost(navController)
+//
+//        SettingNavHost(navController, bottomSheetConfig)
+
+        HomeNavHost(navController, bottomSheetConfig)
+
+//        ListDetailNavHost(navController, bottomSheetConfig, Icons.Rounded.ChevronLeft)
+//
+//        StepNavHost(navController, bottomSheetConfig)
+//
+//        ScheduledNavHost(navController, Icons.Rounded.ChevronLeft)
+//
+//        ScheduledTodayNavHost(navController, Icons.Rounded.ChevronLeft)
+//
+//        AllNavHost(navController, Icons.Rounded.ChevronLeft)
+    }
+}
 @OptIn(ExperimentalMaterialNavigationApi::class)
 @Composable
 private fun HomeTableNavHost(
