@@ -33,7 +33,7 @@ class MainActivity : ComponentActivity() {
             windowState = rememberWindowState()
             HostScreen {
                 Surface {
-                    Box(modifier = Modifier.fillMaxSize().background(Color.Black))
+                    Box(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background))
 //                    MainNavHost(windowState)
                 }
             }
